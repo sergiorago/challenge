@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My City Timeline</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme-darkly.css">
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div class="main container-fluid">
+        <div class="title">
+            <h2 class="text-center">My City's</h2>
+            <h1 class="text-center">Timeline</h1>
+        </div>
+
+        <div class="place">
+        </div>
+
+        <div class="articles">
+        </div>
+
+    </div>
+
+    <script type="text/x-handlebars-template" id="place-template">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <div class="input-group input-group-lg">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" id="autocomple" class="input-city form-control text-success" placeholder="Type your city...">
+                </div>
+
+                <div class="slider-container">
+                    <h4 class="text-success">Year</h4>
+                    <input class="input-year slider-input" type="text"
+                        data-slider-min="{{minYear}}"
+                        data-slider-max="{{maxYear}}"
+                        data-slider-step="1"
+                        data-slider-value="{{maxYear}}"
+                        data-value="{{maxYear}}"
+                        value="{{maxYear}}">
+                </div>
+            </div>
+
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="articles-template">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{city}} {{year}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="articles-list">
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="article-template">
+        <div class="article">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">
+                        <a href="{{url}}"><h4>{{headline}}</h4></a>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {{#if img}}
+                        <div class="text-center">
+                            <img src="{{img}}" class="img-responsive"/>
+                        </div>
+                    {{/if}}
+                    <p class="text-justify">{{snippet}}</p>
+                    <div class="text-right"><small>{{pub}}</small></div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/jquery.waterfall.js"></script>
+    <script src="js/lib/handlebars.min.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/backbone.js"></script>
+    <script src="js/lib/bootstrap.js"></script>
+    <script src="js/lib/bootstrap-slider.js"></script>
+    <script src="js/lib/bootstrap-typeahead.js"></script>
+    <script src="js/lib/jquery.geocomplete.js"></script>
+
+    <script src="js/views/place-view.js"></script>
+    <script src="js/views/articles-view.js"></script>
+    <script src="js/views/article-view.js"></script>
+
+    <script src="js/models/place.js"></script>
+    <script src="js/models/article.js"></script>
+
+    <script src="js/collections/articles.js"></script>
+
+    <script src="js/helpers.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
