@@ -1,11 +1,15 @@
 var app = app || {};
 
-$(function () {
-	'use strict';
+(function () {
+	$(function () {
 
-	app.place = new app.Place();
-	var placeView = new app.PlaceView({
-		model: app.place,
-		el: $('.place')
+		'use strict';
+
+		app.place = new app.Place();
+
+		var placeView = new app.PlaceView({
+			model: app.place,
+			el: $('.place')
+		});
 	});
-});
+})();

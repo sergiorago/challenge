@@ -1,16 +1,15 @@
 var app = app || {};
 
-(function ($) {
+(function () {
+
 	'use strict';
 
 	app.ArticlesView = Backbone.View.extend({
-
 		"initialize": function () {
-
 			this.render();
         },
 
-        render: function() {
+        "render": function() {
             var source = $('#articles-template').html(),
                 template = Handlebars.compile(source),
                 html = template(this.collection._meta);
@@ -19,7 +18,7 @@ var app = app || {};
 
             var $articlesList = this.$el.find('.articles-list');
 
-            this.collection.each(function ( model ) {				
+            this.collection.each(function ( model ) {
                 var articleView = new app.ArticleView({
                     "model": model,
                     "el": $articlesList
@@ -34,4 +33,4 @@ var app = app || {};
 			});
         }
 	});
-})(jQuery);
+})();

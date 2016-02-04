@@ -1,12 +1,12 @@
 var app = app || {};
 
-(function ($) {
+(function () {
+
 	'use strict';
 
 	app.ArticleView = Backbone.View.extend({
 
 		"initialize": function () {
-
 			this.render();
         },
 
@@ -17,10 +17,7 @@ var app = app || {};
 
             this.$el.append(html);
 
-			//initialize jquery components
-			
-
             return html;
         }
 	});
-})(jQuery);
+})();

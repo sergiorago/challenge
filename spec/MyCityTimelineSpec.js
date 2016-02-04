@@ -1,17 +1,21 @@
+var app = app || {};
 
 describe("NYT Api", function() {
-    app.articles = new app.Articles();
-    var articlesLoaded = false;
+    var articles = new app.Articles([],{
+        "city":"New York City",
+        "year":"2015"
+    }),
+        articlesLoaded = false;
 
     beforeEach(function(done) {
-
-        app.articles.fetch({
-            data: {
-                "q": "Bogota",
-                "sort": "newest"
+        articles.fetch({
+            "data": {
+                "fq": "glocations.contains(\""+articles.meta("city")+"\")",
+                "begin_date": articles.meta("year").toString() + "0101",
+                "end_date": articles.meta("year").toString() + "1231",
             },
-            async: false,
-            success: function() {
+            "async": true,
+            "success": function() {
                 articlesLoaded = true;
                 done();
             }
@@ -19,18 +23,6 @@ describe("NYT Api", function() {
     });
 
     it("Should be able to load articles information", function(done) {
-        expect(articlesLoaded).toBe(true);
-        done();
-    });
-});
-
-describe("Google Api", function() {
-
-    beforeEach(function(done) {
-
-    });
-
-    it("Should be able to load cities autocomplete information", function(done) {
         expect(articlesLoaded).toBe(true);
         done();
     });

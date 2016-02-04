@@ -1,6 +1,7 @@
 var app = app || {};
 
-(function ($) {
+(function () {
+
 	'use strict';
 
 	app.PlaceView = Backbone.View.extend({
@@ -15,7 +16,6 @@ var app = app || {};
         },
 
 		"render": function () {
-
 			var source = $('#place-template').html(),
 				template = Handlebars.compile(source),
 				html = template(this.model.toJSON()),
@@ -27,7 +27,7 @@ var app = app || {};
 			$('.slider-input').slider().bind("slideStop", function(event, result){
 				that.updateYear();
 		  	});
-			
+
 			$(".input-city").geocomplete().bind("geocode:result", function(event, result){
 				that.updateCity();
 		  	});
@@ -37,13 +37,16 @@ var app = app || {};
 
 		"fetchArticles": function() {
 			if(this.model.get("city")){
-				app.articles = new app.Articles();
+				app.articles = new app.Articles([], {
+					"city": this.model.get("city"),
+					"year": this.model.get("year")
+				});
 
 				app.articles.fetch({
 					"data": {
-						"fq": "glocations.contains(\""+this.model.get("city")+"\")",
-						"begin_date": this.model.get("year").toString() + "0101",
-						"end_date": this.model.get("year").toString() + "1231",
+						"fq": "glocations.contains(\""+app.articles.meta("city")+"\")",
+						"begin_date": app.articles.meta("year").toString() + "0101",
+						"end_date": app.articles.meta("year").toString() + "1231",
 					},
 					"async": true,
 					"success": function() {
@@ -57,8 +60,13 @@ var app = app || {};
 		},
 
 		"events": {
-			//"change .input-city": "updateCity",
-			//"change .input-year": "updateYear"
+			"keyup .input-city" : "citykeyPress"
+		},
+
+		"citykeyPress": function(event) {
+			if(event.keyCode == 13){
+		        this.updateCity();
+		    }
 		},
 
 		"updateYear": function() {
@@ -74,4 +82,4 @@ var app = app || {};
 		}
 
 	});
-})(jQuery);
+})();

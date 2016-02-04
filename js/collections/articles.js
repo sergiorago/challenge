@@ -2,20 +2,21 @@
 var app = app || {};
 
 (function () {
+
 	'use strict';
 
 	app.Articles = Backbone.Collection.extend({
 		// Reference to this collection's model.
 		model: app.Article,
 
-		initialize: function() {
+		"initialize": function(models, options) {
 	        this._meta = {
-				"city": app.place.get("city"),
-				"year": app.place.get("year")
+				"city": options["city"],
+				"year": options["year"]
 			};
 	    },
 
-		meta: function(prop, value) {
+		"meta": function(prop, value) {
 	        if (value === undefined) {
 	            return this._meta[prop]
 	        } else {
@@ -23,13 +24,13 @@ var app = app || {};
 	        }
 	    },
 
-        apiKey: "0457a67e1cf6851de0806a0c2cdb144d:8:74097763",
+        "apiKey": "0457a67e1cf6851de0806a0c2cdb144d:8:74097763",
 
-        url: "http://api.nytimes.com/svc/search/v2/articlesearch.json",
+        "url": "http://api.nytimes.com/svc/search/v2/articlesearch.json",
 
-		imgsUrl: "http://nytimes.com/",
+		"imgsUrl": "http://nytimes.com/",
 
-        parse: function(response) {
+        "parse": function(response) {
 			var that = this,
 			 	lst = _.map(response.response.docs, function(val) {
 
@@ -47,9 +48,9 @@ var app = app || {};
 			});
 
 			return lst;
-        },
+		},
 
-        sync: function(method, collection, options) {
+        "sync": function(method, collection, options) {
             var that = this;
 
             if(!options["data"]["api-key"]){
@@ -67,7 +68,6 @@ var app = app || {};
 			catch(err){
 
 			}
-
         }
 	});
 })();
