@@ -5,11 +5,6 @@ var app = app || {};
 	'use strict';
 
 	app.ArticleView = Backbone.View.extend({
-
-		"initialize": function () {
-			this.render();
-        },
-
         "render": function() {
             var source = $('#article-template').html(),
                 template = Handlebars.compile(source),

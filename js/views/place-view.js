@@ -11,8 +11,6 @@ var app = app || {};
 		"initialize": function () {
         	this.model.on('change:city', this.fetchArticles, this);
 			this.model.on('change:year', this.fetchArticles, this);
-
-			this.render();
         },
 
 		"render": function () {
@@ -54,6 +52,8 @@ var app = app || {};
 							"collection": app.articles,
 							"el": $('.articles')
 						});
+
+						articlesView.render();
 					}
 				});
 			};

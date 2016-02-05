@@ -1,4 +1,5 @@
 body { overflow-y: scroll; }
+.testing{display: none !important;}
 
 .jasmine_html-reporter { background-color: #eee; padding: 5px; margin: -8px; font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333; }
 .jasmine_html-reporter a { text-decoration: none; }

@@ -8,8 +8,10 @@ var app = app || {};
 		app.place = new app.Place();
 
 		var placeView = new app.PlaceView({
-			model: app.place,
-			el: $('.place')
+			"model": app.place,
+			"el": $('.place')
 		});
+
+		placeView.render();
 	});
 })();

@@ -5,11 +5,7 @@ var app = app || {};
 	'use strict';
 
 	app.ArticlesView = Backbone.View.extend({
-		"initialize": function () {
-			this.render();
-        },
-
-        "render": function() {
+		"render": function() {
             var source = $('#articles-template').html(),
                 template = Handlebars.compile(source),
                 html = template(this.collection._meta);
@@ -23,6 +19,8 @@ var app = app || {};
                     "model": model,
                     "el": $articlesList
                 });
+
+				articleView.render();
             });
 
 			//Initilize Jquery components
