@@ -42,9 +42,11 @@ var app = app || {};
 
 				app.articles.fetch({
 					"data": {
-						"fq": "glocations.contains(\""+app.articles.meta("city")+"\")",
+						"q": app.articles.meta("city"),
+						"fq": "glocations(\""+app.articles.meta("city")+"\")",
 						"begin_date": app.articles.meta("year").toString() + "0101",
 						"end_date": app.articles.meta("year").toString() + "1231",
+						"hl": true
 					},
 					"async": true,
 					"success": function() {
@@ -76,7 +78,7 @@ var app = app || {};
 		},
 
 		"updateCity": function() {
-			var city = this.$el.find(".input-city").val();
+			var city = this.$el.find(".input-city").val().replace("-",",");
 			city = city.split(",")[0];
 			this.model.set({"city": city});
 		}
